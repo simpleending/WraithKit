@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WraithKit run</title>
+<style>
+  :root {
+    --bg: #121018;
+    --panel: #1c1a26;
+    --panel-2: #26233a;
+    --text: #ece9f5;     /* 14.3:1 on panel, 12.7:1 on cards (measured) */
+    --muted: #c4bfd6;    /* 9.6:1 on panel, 8.5:1 on cards */
+    --warn: #ffd166;     /* 11.9:1 on panel, 10.5:1 on cards; also the focus ring */
+    --ok: #9be3b4;       /* 11.5:1 on panel */
+    --bad: #ffb3bd;      /* 10.2:1 on panel, 9.0:1 on cards */
+    --approve: #2e7d4f;  /* white text 5.05:1 */
+    --deny: #8b2d3d;     /* white text 8.27:1 */
+    --focus: #ffd166;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: radial-gradient(ellipse at top, #241f3a 0%, var(--bg) 60%) fixed;
+    min-height: 100vh;
+  }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 0 0 12px rgba(255, 209, 102, .45); }
+  header { padding: 16px 20px; border-bottom: 1px solid #332f4a; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+  h1 { font-size: 20px; margin: 0; }
+  h2 { font-size: 16px; margin: 0 0 8px; }
+  .glyph { font-size: 22px; line-height: 1; }
+  .badge { border: 1px solid var(--warn); color: var(--warn); padding: 2px 8px; border-radius: 4px; font-weight: 600; max-width: 100%; overflow-wrap: anywhere; }
+  header > * { min-width: 0; }
+  .tablewrap { overflow-x: auto; }
+  #verify-head { overflow-wrap: anywhere; }
+  .status { font-weight: 600; }
+  .muted { color: var(--muted); }
+  main { padding: 16px 20px; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 900px) { main { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .wide { grid-column: 1 / -1; } }
+  section { background: var(--panel); border: 1px solid #332f4a; border-radius: 8px; padding: 14px; min-width: 0; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid #332f4a; vertical-align: top; overflow-wrap: anywhere; }
+  th { color: var(--muted); font-weight: 600; }
+  ol { margin: 0; padding-left: 20px; }
+  li { margin: 2px 0; overflow-wrap: anywhere; }
+  button {
+    font: inherit; color: #fff; border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; min-height: 40px;
+  }
+  button:disabled { opacity: .55; cursor: default; }
+  button.approve { background: var(--approve); }
+  button.deny { background: var(--deny); }
+  button.plain { background: var(--panel-2); color: var(--text); border: 1px solid #4a4566; }
+  .card { border: 1px solid #4a4566; border-radius: 8px; padding: 12px; margin-bottom: 12px; background: var(--panel-2); }
+  .card.waiting { border-color: var(--warn); }
+  pre { background: #0e0d14; color: var(--text); padding: 10px; border-radius: 6px; overflow: auto; white-space: pre-wrap; word-break: break-word; max-height: 260px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  dialog { background: var(--panel); color: var(--text); border: 1px solid #4a4566; border-radius: 8px; width: min(720px, 94vw); }
+  dialog::backdrop { background: rgba(0, 0, 0, .6); }
+  .note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: 13px; overflow-wrap: anywhere; }
+  @media (prefers-reduced-motion: no-preference) {
+    button { transition: box-shadow .2s ease; }
+    button:hover { box-shadow: 0 0 8px rgba(255, 209, 102, .3); }
+  }
+  @media (max-width: 380px) { main, header { padding-left: 12px; padding-right: 12px; } th, td { font-size: 14px; } }
+</style>
+</head>
+<body>
+<header>
+  <span class="glyph" aria-hidden="true">👻</span>
+  <h1 id="app-name">WraithKit</h1>
+  <span id="mode" class="badge" role="status"></span>
+  <span id="run-status" class="status"></span>
+  <span class="muted">head <code id="head"></code></span>
+  <button id="verify-btn" class="plain" type="button">Verify ledger</button>
+</header>
+<p class="muted" style="padding: 0 20px; margin: 12px 0 0;" id="task"></p>
+<div id="live" class="sr" aria-live="polite"></div>
+
+<main>
+  <section id="waiting-section" class="wide" aria-labelledby="waiting-h">
+    <h2 id="waiting-h">Waiting for you</h2>
+    <div id="waiting"></div>
+  </section>
+
+  <section id="claims-section" aria-labelledby="claims-h">
+    <h2 id="claims-h">Claims</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th scope="col">Claim</th><th scope="col">Status</th><th scope="col">Cites</th></tr></thead>
+      <tbody id="claims"></tbody>
+    </table></div>
+  </section>
+
+  <section id="evidence-section" aria-labelledby="evidence-h">
+    <h2 id="evidence-h">Evidence</h2>
+    <ul id="evidence" style="list-style: none; padding: 0; margin: 0;"></ul>
+    <p class="note">Flags are a heuristic. A missing flag does not mean the text is safe.</p>
+  </section>
+
+  <section id="verify-section" aria-labelledby="verify-h" hidden>
+    <h2 id="verify-h">Verification</h2>
+    <ul id="verify-list" style="list-style: none; padding: 0; margin: 0;"></ul>
+    <p class="muted" id="verify-head"></p>
+  </section>
+
+  <section class="wide" aria-labelledby="timeline-h">
+    <h2 id="timeline-h">Timeline</h2>
+    <ol id="timeline"></ol>
+  </section>
+</main>
+
+<dialog id="evidence-dialog" aria-labelledby="ev-title">
+  <h2 id="ev-title">Evidence</h2>
+  <pre id="ev-text" tabindex="0"></pre>
+  <div class="actions"><button id="ev-close" class="plain" type="button">Close</button></div>
+</dialog>
+
+<script>
+const base = location.pathname.replace(/\/$/, '');
+let lastJson = '';
+let state = null;
+
+function el(tag, text, attrs) {
+  const n = document.createElement(tag);
+  if (text !== undefined && text !== null) n.textContent = text;
+  for (const [k, v] of Object.entries(attrs || {})) n.setAttribute(k, v);
+  return n;
+}
+
+function announce(msg) {
+  document.getElementById('live').textContent = msg;
+}
+
+const RUN_STATUS = {
+  running: '▶ running',
+  waiting: '⏳ waiting for you',
+  finished: '✔ finished',
+  failed: '✖ failed',
+  needs_review: '⚠ needs review',
+};
+
+const PROPOSAL_STATUS = {
+  pending: '⏳ waiting for you',
+  approved: '⚠ approved, not run (process stopped)',
+  denied: '✖ denied',
+  stale: '⚠ stale, not run',
+  started: '… running, outcome unknown if the run stopped',
+  done: '✔ done',
+  failed: '✖ failed',
+};
+
+const CLAIM_STATUS = {
+  supported: '✔ supported',
+  conflicted: '⚖ conflicted',
+  unsupported: '✖ unsupported',
+};
+
+function evidenceById(id) {
+  return (state.evidence || []).find(e => e.id === id);
+}
+
+function renderHeader() {
+  document.getElementById('app-name').textContent = state.app || 'WraithKit';
+  document.getElementById('mode').textContent = state.model || '';
+  document.getElementById('run-status').textContent = RUN_STATUS[state.status] || (state.status || 'starting');
+  document.getElementById('head').textContent = (state.head || '').slice(0, 12);
+  document.getElementById('task').textContent = state.task ? 'Task: ' + state.task : '';
+}
+
+function approvalCard(p) {
+  const card = el('div', null, { class: 'card waiting', id: 'card-' + p.id });
+  card.append(el('h3', p.id + ' · ' + p.tool + ' · ' + PROPOSAL_STATUS.pending, { id: 'card-title-' + p.id }));
+  card.firstChild.style.fontSize = '15px';
+  card.append(el('p', p.summary));
+  for (const w of p.warnings || []) card.append(el('p', '⚠ ' + w, { style: 'color: var(--warn); margin: 4px 0;' }));
+  card.append(el('pre', p.detail || '(no preview)'));
+  const inputs = el('ul', null, { 'aria-label': 'Inputs' });
+  for (const [name, hash] of Object.entries(p.inputs || {})) {
+    inputs.append(el('li', 'Input ' + name + ' @ ' + (hash === 'absent' ? 'absent' : hash.slice(0, 12) + '…')));
+  }
+  card.append(inputs);
+  const infl = el('ul', null, { 'aria-label': 'Evidence that influenced the model' });
+  for (const id of p.influenced_by || []) {
+    const e = evidenceById(id);
+    const flag = e && e.flags.length ? ' ⚠ addresses AI agents' : '';
+    infl.append(el('li', 'Influenced by ' + id + ' ' + (e ? e.source : '') + flag));
+  }
+  card.append(infl);
+  card.append(el('p', 'Digest ' + p.digest.slice(0, 12), { class: 'muted' }));
+  const actions = el('div', null, { class: 'actions' });
+  const approve = el('button', 'Approve ' + p.id, { type: 'button', class: 'approve', id: 'approve-' + p.id, 'aria-label': 'Approve ' + p.id + ' (' + p.tool + ')' });
+  const deny = el('button', 'Deny ' + p.id, { type: 'button', class: 'deny', id: 'deny-' + p.id, 'aria-label': 'Deny ' + p.id + ' (' + p.tool + ')' });
+  approve.addEventListener('click', () => decide(p, true, approve, deny));
+  deny.addEventListener('click', () => decide(p, false, approve, deny));
+  actions.append(approve, deny);
+  card.append(actions);
+  return card;
+}
+
+async function decide(p, approve, a, b) {
+  a.disabled = true;
+  b.disabled = true;
+  try {
+    const r = await fetch(base + '/api/decide', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ proposal: p.id, approve: approve, digest: p.digest }),
+    });
+    const body = await r.json().catch(() => ({}));
+    announce(r.ok ? p.id + ': ' + body.outcome : (body.error || 'The request failed.'));
+  } catch (e) {
+    announce('Could not reach the local server.');
+  }
+  refresh();
+}
+
+function renderWaiting() {
+  const box = document.getElementById('waiting');
+  // A run that is not waiting cannot take a decision, so its leftover pending proposals get no buttons.
+  const pending = state.status === 'waiting' ? (state.proposals || []).filter(p => p.status === 'pending') : [];
+  const focusId = document.activeElement && document.activeElement.id;
+  box.replaceChildren();
+  if (pending.length === 0) {
+    box.append(el('p', state.status === 'finished' ? 'Nothing is waiting. The run has finished.' : 'Nothing is waiting for you right now.', { class: 'muted' }));
+  }
+  for (const p of pending) box.append(approvalCard(p));
+  restoreFocus(focusId);
+}
+
+function renderClaims() {
+  const body = document.getElementById('claims');
+  body.replaceChildren();
+  for (const c of state.claims || []) {
+    const tr = el('tr');
+    tr.append(el('td', c.text));
+    tr.append(el('td', CLAIM_STATUS[c.status] || c.status));
+    const cites = el('td');
+    for (const ci of c.cites || []) {
+      const line = el('div', ci.evidence_id + ' “' + ci.quote + '”');
+      if (!ci.found) line.append(el('div', 'quote not found', { style: 'color: var(--bad);' }));
+      cites.append(line);
+    }
+    if ((c.cites || []).length === 0) cites.append(el('div', 'no cites', { class: 'muted' }));
+    tr.append(cites);
+    body.append(tr);
+  }
+  if ((state.claims || []).length === 0) {
+    const tr = el('tr');
+    tr.append(el('td', 'No claims yet.', { colspan: '3', class: 'muted' }));
+    body.append(tr);
+  }
+}
+
+function renderEvidence() {
+  const list = document.getElementById('evidence');
+  const focusId = document.activeElement && document.activeElement.id;
+  list.replaceChildren();
+  for (const e of state.evidence || []) {
+    const li = el('li', null, { style: 'margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;' });
+    li.append(el('span', e.id, { style: 'font-weight: 600;' }));
+    li.append(el('span', e.source + ' · ' + e.bytes + ' bytes'));
+    if (e.flags.length) li.append(el('span', '⚠ addresses AI agents', { style: 'color: var(--warn);' }));
+    const open = el('button', 'Open ' + e.id, { type: 'button', class: 'plain', id: 'open-' + e.id, 'aria-label': 'Open evidence ' + e.id + ' from ' + e.source });
+    open.addEventListener('click', () => openEvidence(e));
+    li.append(open);
+    list.append(li);
+  }
+  restoreFocus(focusId);
+}
+
+let openedFrom = null;
+
+async function openEvidence(e) {
+  const r = await fetch(base + '/api/evidence/' + e.id);
+  const text = r.ok ? await r.text() : 'Could not load this evidence (HTTP ' + r.status + ').';
+  document.getElementById('ev-title').textContent = 'Evidence ' + e.id + ' · ' + e.source;
+  document.getElementById('ev-text').textContent = text;
+  openedFrom = 'open-' + e.id;
+  document.getElementById('evidence-dialog').showModal();
+  document.getElementById('ev-close').focus();
+}
+
+document.getElementById('ev-close').addEventListener('click', () => {
+  document.getElementById('evidence-dialog').close();
+  const back = openedFrom && document.getElementById(openedFrom);
+  if (back) back.focus();
+});
+
+function renderTimeline() {
+  const ol = document.getElementById('timeline');
+  ol.replaceChildren();
+  for (const t of state.timeline || []) {
+    ol.append(el('li', '#' + t.seq + '  ' + t.text));
+  }
+}
+
+function render() {
+  renderHeader();
+  renderWaiting();
+  renderClaims();
+  renderEvidence();
+  renderTimeline();
+  if (state.status === 'failed' || state.status === 'needs_review') {
+    announce('Run ' + (state.status === 'failed' ? 'failed' : 'needs review') + ': ' + (state.summary || ''));
+  }
+}
+
+function restoreFocus(id) {
+  if (!id) return;
+  const n = document.getElementById(id);
+  if (n && document.activeElement !== n) n.focus({ preventScroll: true });
+}
+
+// One request at a time: during a live model call the server answers late, and stacking a request
+// every second would queue dozens of them.
+let refreshing = false;
+
+async function refresh() {
+  if (refreshing) return;
+  refreshing = true;
+  try {
+    const r = await fetch(base + '/api/state');
+    const text = await r.text();
+    if (text === lastJson) return;
+    lastJson = text;
+    state = JSON.parse(text);
+    render();
+  } catch (e) {
+    announce('Lost contact with the local server. Reload the page.');
+  } finally {
+    refreshing = false;
+  }
+}
+
+document.getElementById('verify-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('verify-btn');
+  btn.disabled = true;
+  // A previous result is not a successful verification of this attempt.
+  document.getElementById('verify-section').hidden = true;
+  try {
+    const r = await fetch(base + '/api/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    if (!r.ok) throw new Error('Verification request failed.');
+    const v = await r.json();
+    const list = document.getElementById('verify-list');
+    list.replaceChildren();
+    for (const c of v.checks || []) {
+      list.append(el('li', (c.ok ? '✔ ok   ' : '✖ FAIL ') + c.name + ': ' + c.detail));
+    }
+    document.getElementById('verify-head').textContent = 'head ' + (v.head || '') + ' (tamper-evident relative to this hash, not signed)';
+    document.getElementById('verify-section').hidden = false;
+    announce(v.all_ok ? 'Verification passed.' : 'Verification failed. See the list.');
+  } catch (e) {
+    announce('Verification could not complete. Check the local server and try again.');
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+refresh();
+setInterval(refresh, 1000);
+</script>
+</body>
+</html>

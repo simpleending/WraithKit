@@ -1,0 +1,133 @@
+{
+  "checked_on": "2026-11-15",
+  "method": "Read-only primary-source web documentation and pinned public GitHub source; no framework execution or private conversation recovered.",
+  "sources": [
+    {
+      "url": "https://docs.langchain.com/oss/python/langgraph/overview",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://github.com/langchain-ai/langgraph/blob/main/LICENSE",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://github.com/openai/openai-agents-python/blob/main/LICENSE",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://github.com/pydantic/pydantic-ai/blob/main/LICENSE",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://github.com/simpleending/1-sec",
+      "used_in": [
+        "research/ONE_SEC.md"
+      ]
+    },
+    {
+      "url": "https://github.com/simpleending/1-sec/blob/bf47bc6c7fe3e1c8b1fca8ad3be8e8982c5f83ef/LICENSE",
+      "used_in": [
+        "research/ONE_SEC.md"
+      ]
+    },
+    {
+      "url": "https://github.com/simpleending/1-sec/blob/bf47bc6c7fe3e1c8b1fca8ad3be8e8982c5f83ef/README.md",
+      "used_in": [
+        "research/ONE_SEC.md"
+      ]
+    },
+    {
+      "url": "https://github.com/simpleending/1-sec/blob/bf47bc6c7fe3e1c8b1fca8ad3be8e8982c5f83ef/internal/api/server.go",
+      "used_in": [
+        "research/ONE_SEC.md"
+      ]
+    },
+    {
+      "url": "https://github.com/simpleending/1-sec/blob/bf47bc6c7fe3e1c8b1fca8ad3be8e8982c5f83ef/internal/core/response.go",
+      "used_in": [
+        "research/ONE_SEC.md"
+      ]
+    },
+    {
+      "url": "https://huggingface.co/docs/smolagents/index",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://kiro.dev/docs/specs/",
+      "used_in": [
+        "specs/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "url": "https://kiroween.devpost.com/",
+      "used_in": [
+        "research/KIROWEEN_2026.md"
+      ]
+    },
+    {
+      "url": "https://kiroween.devpost.com/details/dates",
+      "used_in": [
+        "research/KIROWEEN_2026.md"
+      ]
+    },
+    {
+      "url": "https://kiroween.devpost.com/resources",
+      "used_in": [
+        "research/KIROWEEN_2026.md"
+      ]
+    },
+    {
+      "url": "https://kiroween.devpost.com/rules",
+      "used_in": [
+        "research/KIROWEEN_2026.md"
+      ]
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/agent-framework/overview/",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://openai.github.io/openai-agents-python/",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/overview/",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/tools-toolsets/deferred-tools/",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    },
+    {
+      "url": "https://strandsagents.com/latest/documentation/docs/",
+      "used_in": [
+        "research/FOUNDATIONS.md"
+      ]
+    }
+  ],
+  "pinned_1sec_index": "../evidence/1sec-sources.json"
+}

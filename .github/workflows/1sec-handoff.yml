@@ -1,0 +1,43 @@
+name: Synthetic 1-SEC handoff
+
+'on':
+  push:
+    paths:
+      - 'apps/security-wraith/**'
+      - 'wraithkit/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - '.github/workflows/1sec-handoff.yml'
+      - '.github/scripts/check-1sec-handoff.py'
+  pull_request:
+    paths:
+      - 'apps/security-wraith/**'
+      - 'wraithkit/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - '.github/workflows/1sec-handoff.yml'
+      - '.github/scripts/check-1sec-handoff.py'
+
+permissions:
+  contents: read
+
+jobs:
+  handoff:
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2022]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install the workspace Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal
+      - name: Test the import boundary
+        run: cargo +1.96.0 test --locked -p security-wraith handoff
+      - name: Build the real CLI
+        run: cargo +1.96.0 build --locked -p security-wraith
+      - name: Validate synthetic exports without a model or actuator
+        run: python .github/scripts/check-1sec-handoff.py

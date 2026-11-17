@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page went stale · WraithKit</title>
+<meta name="description" content="This page does not exist. Nothing ran.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0c0b0f">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.13.0/build/player/lottie_light.min.js" integrity="sha384-Gr3FGWSrOz4fzm9bvrWwhuQH87JMUCLlOTaHhpddbnlHHWCZPxMeQ3KUPsomzIii" crossorigin="anonymous" defer></script>
+<script type="module">
+  const box = document.querySelector('[data-lottie]');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  addEventListener('load', () => {
+    const anim = window.lottie?.loadAnimation({ container: box, renderer: 'svg', loop: !still, autoplay: !still, path: '/assets/wraith.json' });
+    anim?.addEventListener('DOMLoaded', () => box.classList.add('is-ready'));
+  });
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="bar__mark" href="/" aria-label="WraithKit home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 22V10a8 8 0 0 1 16 0v12l-2.7-2-2.6 2-2.7-2-2.7 2-2.6-2z"/><circle cx="9.5" cy="10.5" r="1.5"/><circle cx="14.5" cy="10.5" r="1.5"/></svg>
+    <span>WraithKit</span>
+  </a>
+  <span></span>
+  <a class="bar__event" href="/#kiroween"><span class="dot" aria-hidden="true"></span>Kiroween 2026 · Skeleton Crew</a>
+  <a class="bar__gh drip-link" href="https://github.com/simpleending/WraithKit">GitHub</a>
+</header>
+<main id="main" class="lost">
+  <div class="lost__ghost" data-lottie aria-hidden="true"></div>
+  <h1>This page went stale.</h1>
+  <p class="lost__text">The link points at something that moved or never existed. Nothing ran, and nothing was changed.</p>
+  <a class="btn" href="/"><span class="btn__label">Back to the start</span></a>
+</main>
+</body>
+</html>

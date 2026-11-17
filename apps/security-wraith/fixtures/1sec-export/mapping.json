@@ -1,0 +1,16 @@
+{
+  "sanitized": true,
+  "incident_id": "offline-auth-downgrade-001",
+  "selected_alert_id": "915beda0-f82f-438b-9a18-3f83450b1032",
+  "asset": {
+    "id": "synthetic-release-bot",
+    "kind": "automation_agent",
+    "owner": "Synthetic integration-test operator",
+    "criticality": "No production system; offline compatibility test"
+  },
+  "source_note": "Actual 1-SEC auth_fortress output from synthetic auth_downgrade input, upstream 2f6527d3f5e760b0e17955d75043dfb370f75d54. Module and embedded bus only; no API, full engine, enforcement or model. Asset association supplied by test operator.",
+  "context": [
+    "This synthetic account does not exist in any live authentication service.",
+    "A downgrade may have legitimate recovery context; this test does not establish compromise."
+  ]
+}

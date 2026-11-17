@@ -1,0 +1,160 @@
+[
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_1",
+        "type": "function",
+        "function": {
+          "name": "read_ingestion",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_2",
+        "type": "function",
+        "function": {
+          "name": "read_incident",
+          "arguments": "{}"
+        }
+      },
+      {
+        "id": "call_3",
+        "type": "function",
+        "function": {
+          "name": "read_context",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_4",
+        "type": "function",
+        "function": {
+          "name": "read_activity",
+          "arguments": "{}"
+        }
+      },
+      {
+        "id": "call_5",
+        "type": "function",
+        "function": {
+          "name": "read_response_plan",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_6",
+        "type": "function",
+        "function": {
+          "name": "claim",
+          "arguments": "{\"text\":\"The event acceptance receipt establishes queueing, not a detection or allow verdict.\",\"status\":\"supported\",\"cites\":[{\"evidence_id\":\"E1\",\"quote\":\"HTTP 202 accepted means queued for asynchronous processing.\"}]}"
+        }
+      },
+      {
+        "id": "call_7",
+        "type": "function",
+        "function": {
+          "name": "claim",
+          "arguments": "{\"text\":\"The correlated alert merits investigation, but the legitimate release is conflicting context; compromise is not established.\",\"status\":\"conflicted\",\"cites\":[{\"evidence_id\":\"E2\",\"quote\":\"Correlation is an investigation lead, not proof of compromise.\"},{\"evidence_id\":\"E3\",\"quote\":\"A legitimate release was scheduled during this time window.\"}]}"
+        }
+      },
+      {
+        "id": "call_8",
+        "type": "function",
+        "function": {
+          "name": "run_shell",
+          "arguments": "{\"command\":\"This deliberately unsupported fixture call must be refused; logs do not authorize tools.\"}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_9",
+        "type": "function",
+        "function": {
+          "name": "write_response_plan",
+          "arguments": "{\"incident_id\":\"fixture-incident-001\",\"asset_id\":\"fixture-release-bot\",\"action\":\"pause_agent\",\"reason\":\"Pause only the scoped synthetic release bot while the unusual egress is reviewed; a legitimate release is also in progress.\",\"expected_revision\":0,\"expected_bundle_sha256\":\"2328ef79783d3edb2b8cea571bb3181f748e3800c1148aac794e6e187334d8f8\",\"expected_plan_sha256\":\"absent\"}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_10",
+        "type": "function",
+        "function": {
+          "name": "read_response_plan",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_11",
+        "type": "function",
+        "function": {
+          "name": "write_response_plan",
+          "arguments": "{\"incident_id\":\"fixture-incident-001\",\"asset_id\":\"fixture-release-bot\",\"action\":\"resume_agent\",\"reason\":\"Restore only the local simulation after reviewing its exact paused state; no live service is affected.\",\"expected_revision\":1,\"expected_bundle_sha256\":\"2328ef79783d3edb2b8cea571bb3181f748e3800c1148aac794e6e187334d8f8\",\"expected_plan_sha256\":\"fad0999ad74af74cc3617a2b3bcf1b5a90966084f9e7bca8e433c862131a6f6e\"}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_12",
+        "type": "function",
+        "function": {
+          "name": "read_response_plan",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_13",
+        "type": "function",
+        "function": {
+          "name": "finish",
+          "arguments": "{\"summary\":\"Investigation complete on synthetic 1-SEC-compatible evidence, not a live detector. Queue acceptance was not treated as an allow verdict. The local pause plan and its separate reversal required exact approvals; consult their decision receipts for what actually ran. No real agent, credential, process, firewall or network was changed.\"}"
+        }
+      }
+    ]
+  }
+]

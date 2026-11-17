@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1",
+  "execution_mode": "fixture",
+  "summary": "Illustrative output only; not a model-generated research result.",
+  "evidence": [],
+  "unknowns": [
+    "The proposed Research Wraith application has not run."
+  ],
+  "claims": [
+    {
+      "id": "example-unknown",
+      "text": "Whether the future demo meets its acceptance criteria.",
+      "status": "unverified",
+      "evidence_ids": []
+    }
+  ]
+}

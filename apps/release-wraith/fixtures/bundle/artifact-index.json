@@ -1,0 +1,11 @@
+{
+  "schema": "wraith-artifacts-v1",
+  "fixture": true,
+  "artifacts": [
+    {
+      "path": "artifacts/spectral-cli-1.4.2.zip",
+      "sha256": "040c64ca1ca70d48f81dd3e5f14fd3b02f6c68b8e8243978ebce7f19663a03b5",
+      "bytes": 215
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Check out every text file with LF on every platform. The demo fixtures are embedded with
+# include_str!, so this keeps the demo bytes, and the file hashes it shows, the same on Windows.
+* text=auto eol=lf

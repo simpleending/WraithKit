@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Format Rust on save",
+      "trigger": "PostFileSave",
+      "description": "Runs cargo fmt on the workspace whenever a .rs file is saved, so formatting never fails CI.",
+      "matcher": "\\.rs$",
+      "action": {
+        "type": "command",
+        "command": "cargo fmt --all",
+        "timeout": 60
+      }
+    }
+  ]
+}

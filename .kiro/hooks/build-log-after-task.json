@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Log each spec task",
+      "trigger": "PostTaskExec",
+      "description": "After a spec task runs, reminds the agent to record it honestly in BUILD_LOG.md.",
+      "action": {
+        "type": "agent",
+        "prompt": "Append one dated line to BUILD_LOG.md for the task that just ran: task number, what changed, and the real result of `cargo test --workspace` (paste the 'test result' lines). If tests were not run or failed, say so. Never record a check you did not perform."
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+# Generated Rust / JavaScript build output and dependency caches.
+# Keep Cargo.lock: it pins the applications' reproducible dependency graph.
+target/
+node_modules/
+*.rs.bk
+
+# Private runtime ledgers, evidence blobs, model output and local smoke scripts.
+# Commands can be launched from subfolders, so exclude .wraith at every depth.
+.wraith/
+
+# Reserved local workspaces and generated outputs. Keep real inputs outside Git.
+/local/
+/exports/
+/briefs/
+/dist/
+/public-build/
+/handoff.json
+/response-plan.json
+
+# Third-party 1-SEC research snapshots: local reference only, not redistribution.
+/evidence/
+
+# Local credentials. Commit examples only after checking that values are fake.
+.env
+.env.*
+.envrc
+!.env.example
+!.env.sample
+!.env.template
+# Deliberately fake, embedded test fixture; required for the secret-file guard.
+!/apps/repo-wraith/fixtures/demo-repo/.env
+.cargo/credentials
+.cargo/credentials.toml
+.npmrc
+.npmrc.local
+.pypirc
+.netrc
+.npm-token
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+id_dsa
+id_ecdsa
+
+# Local editor / OS state, not project source or Kiro submission evidence.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+
+# Local test/build reports and caches (not the committed fixture ledger).
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Binaries and archives produced by the release workflow at the repo root.
+/security-wraith
+/security-wraith.exe
+/security-wraith-*.zip
+/release-wraith
+/release-wraith.exe
+/release-wraith-*.zip
+/repo-wraith
+/repo-wraith.exe
+/research-wraith
+/research-wraith.exe
+/repo-wraith-*.zip
+/research-wraith-*.zip
+
+# Deliberately NOT ignored: .kiro/, .github/, Cargo.lock, LICENSE, source,
+# test fixtures, docs, site assets/fonts/licenses and site/assets/ledger.jsonl.
+# .gitignore does not remove existing tracked files or sanitize Git history.

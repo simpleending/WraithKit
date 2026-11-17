@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1",
+  "execution_mode": "fixture",
+  "summary": "Illustrative output only; no repository was analyzed by an agent.",
+  "evidence": [],
+  "unknowns": [
+    "No actual code analysis or patch generation has run."
+  ],
+  "findings": [],
+  "patch_artifact": null,
+  "test_status": "not_run",
+  "test_receipt_id": null
+}

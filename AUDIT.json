@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-15",
+  "checks": [
+    {
+      "check": "JSON syntax",
+      "passed": true,
+      "files": 8
+    },
+    {
+      "check": "Local Markdown link destinations",
+      "passed": true,
+      "links": 9
+    },
+    {
+      "check": "Pinned upstream original byte lengths and SHA-256",
+      "passed": true,
+      "files": 5
+    },
+    {
+      "check": "Roadmap rows numbered uniquely 1 through 20",
+      "passed": true
+    },
+    {
+      "check": "No manufactured Kiro usage directory",
+      "passed": true
+    }
+  ],
+  "not_tested": [
+    "JSON Schema validation",
+    "agent runtime",
+    "live model quality",
+    "sandbox enforcement",
+    "Kiro usage",
+    "personal eligibility",
+    "public demo access"
+  ]
+}

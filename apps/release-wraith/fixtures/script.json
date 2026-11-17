@@ -1,0 +1,102 @@
+[
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "ci",
+        "type": "function",
+        "function": {
+          "name": "read_ci_failure",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "plan",
+        "type": "function",
+        "function": {
+          "name": "read_release_input",
+          "arguments": "{\"name\":\"release-plan.json\"}"
+        }
+      },
+      {
+        "id": "index",
+        "type": "function",
+        "function": {
+          "name": "read_release_input",
+          "arguments": "{\"name\":\"artifact-index.json\"}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "before",
+        "type": "function",
+        "function": {
+          "name": "check_release_contract",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "diagnosis",
+        "type": "function",
+        "function": {
+          "name": "claim",
+          "arguments": "{\"text\":\"The supplied release plan points at dist/spectral-cli.zip, while the CI log reports a build artifact at artifacts/spectral-cli-1.4.2.zip. The bounded local contract check reports FAIL.\",\"status\":\"supported\",\"cites\":[{\"evidence_id\":\"E2\",\"quote\":\"Build produced artifacts/spectral-cli-1.4.2.zip\"},{\"evidence_id\":\"E3\",\"quote\":\"\\\"artifact\\\": \\\"dist/spectral-cli.zip\\\"\"},{\"evidence_id\":\"E5\",\"quote\":\"\\\"status\\\": \\\"FAIL\\\"\"}]}"
+        }
+      },
+      {
+        "id": "fix",
+        "type": "function",
+        "function": {
+          "name": "fix_artifact_path",
+          "arguments": "{\"from\":\"dist/spectral-cli.zip\",\"to\":\"artifacts/spectral-cli-1.4.2.zip\"}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "after",
+        "type": "function",
+        "function": {
+          "name": "check_release_contract",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "done",
+        "type": "function",
+        "function": {
+          "name": "finish",
+          "arguments": "{\"summary\":\"The approval decision and the latest local contract-check result are recorded above. Approval changes only local release-plan.json; denial leaves the original plan unchanged. The fixture check verifies local artifact bytes and the declared path only. No hosted CI, build, tests, archive-content validation, upload, tag, push, or deployment ran.\"}"
+        }
+      }
+    ]
+  }
+]

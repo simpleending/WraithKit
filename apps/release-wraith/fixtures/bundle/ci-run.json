@@ -1,0 +1,8 @@
+{
+  "schema": "wraith-ci-export-v1",
+  "fixture": true,
+  "run_id": "fixture-release-184",
+  "commit": "1111111111111111111111111111111111111111",
+  "conclusion": "failure",
+  "failed_step": "upload-artifact"
+}

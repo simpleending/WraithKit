@@ -1,0 +1,26 @@
+{
+  "alerts": [
+    {
+      "id": "915beda0-f82f-438b-9a18-3f83450b1032",
+      "timestamp": "2026-11-17T12:31:25.19435699Z",
+      "module": "auth_fortress",
+      "type": "auth_method_downgrade",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "title": "Authentication Method Downgrade",
+      "description": "User \"synthetic-release-bot\" authentication downgraded from passkey to password (reason: offline export compatibility test) from IP 192.0.2.44. Forced downgrades are a common AitM proxy technique.",
+      "event_ids": [
+        "f54161de-3fad-4933-9c5a-4a2abcf52e97"
+      ],
+      "metadata": {
+        "source_ip": "192.0.2.44"
+      },
+      "mitigations": [
+        "Block authentication downgrades for accounts with passkeys enrolled",
+        "If downgrade is necessary, require additional verification step",
+        "Monitor for user-agent spoofing that triggers downgrade paths"
+      ]
+    }
+  ],
+  "total": 1
+}

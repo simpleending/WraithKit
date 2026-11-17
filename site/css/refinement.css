@@ -1,0 +1,144 @@
+/* Scoped art-direction pass. The existing footer is intentionally untouched. */
+main .hero { min-height: 96svh; padding-top: calc(var(--bar) + 20px); padding-bottom: 64px; justify-content: center; }
+main .hero__title { width: 100%; margin: -4vw auto -6vw; }
+main .hero__title > svg { display: none; }
+main .hero__art { width: 100%; height: auto; display: block; max-height: 61vh; object-fit: cover; object-position: center; mix-blend-mode: screen; animation: materialize 1.6s cubic-bezier(.2,.8,.2,1) both; }
+main .hero__foot { margin: 0; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 8%; align-items: end; }
+main .hero__lede { font-size: clamp(38px,4.8vw,76px); font-weight: 520; line-height: .99; letter-spacing: -.05em; max-width: 12ch; }
+main .hero__description { margin: 0; max-width: 39ch; color: var(--ash); font-size: clamp(16px,1.3vw,20px); line-height: 1.6; }
+.hero__actions { grid-column: 2; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.hero__primary { display: inline-flex; justify-content: center; align-items: center; padding: 15px 24px; border: 1px solid #756450; color: #f3e5cd; text-decoration: none; border-radius: 999px; font-size: 15px; }
+.hero__secondary { color: var(--ash); text-decoration: underline; text-underline-offset: 5px; font-size: 14px; }
+main .rule { padding-top: clamp(80px,10vw,160px); padding-bottom: 24px; }
+main .rule__text { grid-column: 1/9; font-family: var(--sans); font-size: clamp(43px,6.3vw,100px); font-weight: 480; line-height: 1.04; letter-spacing: -.055em; }
+main .rule__text em { color: #d6b184; }
+main .rule__note { grid-column: 9/13; align-self: end; margin-top: 32px; font-size: 17px; line-height: 1.65; }
+main .sealed, main .stale, main .ledger, main .crew, main .try { margin: 90px var(--m) 0; padding: 65px 0 0; border-top: 1px solid var(--line); }
+main .sealed__copy h2, main .stale__copy h2, main .ledger h2, main .crew h2, main .try h2 { font-family: var(--sans); font-weight: 490; letter-spacing: -.045em; line-height: 1.08; }
+main .sealed__copy p, main .stale__copy p { font-size: 16px; line-height: 1.7; }
+main .code { background: #111015; }
+main .app h3 { font-size: clamp(28px,3vw,44px); letter-spacing: -.04em; font-weight: 500; }
+main .app__job { font-size: 20px; line-height: 1.4; }
+main .try { padding-bottom: 70px; }
+@keyframes materialize { from { opacity: 0; transform: translateY(18px) scale(.98); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+@media (min-width: 1700px) { main { max-width: 1700px; margin-inline: auto; } }
+@media (max-width: 760px) {
+  main .hero { min-height: auto; padding-top: 95px; padding-bottom: 44px; }
+  main .hero__title { margin: 0 -10px 12px; width: calc(100% + 20px); }
+  main .hero__art { max-height: none; aspect-ratio: 1.5; object-fit: contain; }
+  main .hero__foot { grid-template-columns: 1fr; gap: 24px; }
+  main .hero__lede { font-size: clamp(42px,10vw,64px); }
+  .hero__actions { grid-column: 1; gap: 22px; }
+  main .hero__description { max-width: 34ch; }
+  main .rule__text, main .rule__note { grid-column: 1/-1; }
+  main .rule__note { max-width: 40ch; }
+  main .sealed, main .stale, main .ledger, main .crew, main .try { margin-top: 64px; padding-top: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { main .hero__art { animation: none; } }
+main .hero__art { mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 82%, transparent); animation: materialize 1.6s cubic-bezier(.2,.8,.2,1) both, spectral-drift 12s 1.6s ease-in-out infinite alternate; }
+@keyframes spectral-drift { from { transform: translateY(0) scale(1); } to { transform: translateY(-7px) scale(1.012); } }
+@media (prefers-reduced-motion: reduce) { main .hero__art { animation: none; } }
+/* Handmade nocturnal workshop direction replaces the polished-metal concept. */
+main .hero__light { opacity: 0; }
+main .hero__art { object-fit: contain; mix-blend-mode: normal; mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 86%, transparent); }
+main .rule__text em { color: #c7b6d0; }
+.hero__primary { border-color: #776e80; color: #efe7d6; }
+
+/* Two crafts, one shared workbench. Keep the implementation visible without a wall of pills. */
+main .crew h2 { grid-column: 1 / 8; max-width: 13ch; font-size: clamp(42px,5vw,76px); }
+main .crew__lede { grid-column: 9 / 13; margin-top: 8px; align-self: end; }
+.crew__art { grid-column: 1 / -1; margin: 40px 0 0; overflow: hidden; }
+.crew__art img { display: block; width: 100%; height: auto; max-height: 660px; object-fit: cover; object-position: center 55%; mask-image: linear-gradient(transparent,#000 8%,#000 91%,transparent); }
+main .apps { margin-top: 22px; border-top: 0; gap: 7%; }
+main .app { padding: 28px 0 20px; border-top: 1px solid #514758; gap: 20px; }
+main .app + .app { border-left: 0; padding-left: 0; }
+main .app h3 { color: #dacde3; }
+main .app p:not(.app__job,.app__tools) { font-size: 15px; line-height: 1.7; }
+main .app__tools { margin-top: 8px; }
+main .spine { margin-top: 42px; gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+main .spine li { border: 0; border-radius: 0; background: transparent; padding: 23px 8px; }
+main .spine li + li { border-left: 1px solid var(--line); }
+main .spine code { font-size: 13px; }
+main .spine span { font-size: 11px; }
+main .crew__key { margin-top: 22px; font-size: 13px; }
+main .try { grid-template-columns: repeat(12,minmax(0,1fr)); }
+main .try h2 { grid-column: 1 / 8; font-size: clamp(44px,5.3vw,80px); }
+main .try__lede { grid-column: 9 / 13; align-self: end; margin: 0; font-size: 16px; line-height: 1.65; }
+.terminal-heading { grid-column: 1 / -1; display: flex; gap: 14px; align-items: center; margin-top: 42px; border: 1px solid #403947; border-bottom: 0; background: #201b25; padding: 16px 22px; font: 12px/1.4 var(--mono); color: #d3c6db; }
+.terminal-heading > :last-child { margin-left: auto; color: var(--ash); }
+main .term { margin: 0; grid-column: 1/8; border-radius: 0; border-color: #403947; background: #121015; padding: 12px 0; }
+main .term li { padding: 15px 18px; font-size: 13px; }
+main .term li::before { color: #cbb8d7; }
+main .term__out { grid-column: 8/13; margin: 0 0 0 calc(-1 * var(--g)); padding: 26px; border: 1px solid #403947; border-left: 0; background: #17131b; color: #c5b5cb; font-size: 12px; }
+main .try .btn { border-color: #776e80; border-radius: 3px; font-size: 15px; font-weight: 500; padding: 15px 23px; }
+@media (max-width: 760px) {
+ main .crew h2,main .crew__lede,main .try h2,main .try__lede { grid-column: 1/-1; }
+ main .crew__lede,main .try__lede { margin-top: 24px; }
+ .crew__art { margin-top: 24px; margin-inline: -10px; }
+ .crew__art img { max-height: none; object-fit: contain; }
+ main .apps { gap: 26px; }
+ main .spine { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 26px; }
+ main .spine li { padding: 17px 8px; border-bottom: 1px solid var(--line); }
+ main .spine li:nth-child(odd) { border-left: 0; }
+ main .spine li:nth-last-child(-n+2) { border-bottom: 0; }
+ main .term,main .term__out { grid-column: 1/-1; }
+ main .term__out { margin: 0; border: 1px solid #403947; border-top: 0; padding: 22px 18px; }
+ main .term li { flex-wrap: wrap; padding: 14px; }
+ main .term code { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+ .terminal-heading { padding: 14px; gap: 9px; font-size: 10px; }
+}
+/* Four-app crew: primary demonstrations first, bonus examples kept in proportion.
+   Main-scoped additions deliberately do not alter the preserved footer. */
+main .apps--primary .app { padding-right: 0; gap: 18px; }
+main .apps--primary .app h3 { font-size: clamp(29px,3.2vw,47px); line-height: 1.1; }
+main .apps--primary .app__index { color: #ddc9e8; font: 12px/1.6 var(--mono); letter-spacing: .05em; }
+main .app__sequence { display: grid; gap: 12px; padding-left: 20px; color: var(--ash); font-size: 14px; line-height: 1.6; }
+main .app__sequence span { display: inline; color: var(--bone); font-weight: 600; margin-right: 4px; }
+main .app .app__boundary { border-left: 2px solid #786684; padding-left: 14px; font-size: 13px; color: #c7b6ce; }
+main .app__run { justify-self: start; display: inline-flex; gap: 22px; align-items: center; min-height: 44px; color: #efe7d6; text-underline-offset: 6px; }
+main .bonus { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 7%; row-gap: 24px; border-top: 1px dashed #514758; margin-top: 50px; padding-top: 30px; }
+main .bonus__head { grid-column: 1/-1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 24px; }
+main .bonus__head h3 { font-size: 25px; font-weight: 500; letter-spacing: -.025em; }
+main .bonus__head p { color: var(--ash); font-size: 14px; }
+main .bonus__app h4 { color: var(--bone); font-weight: 550; font-size: 21px; }
+main .bonus__app p { color: var(--ash); font-size: 15px; line-height: 1.65; max-width: 48ch; margin: 12px 0; }
+main .bonus__app code, main .bonus__app span { font-size: 12px; color: #b8a6c2; }
+main .run-notes { white-space: normal; font-family: var(--sans); font-size: 15px; line-height: 1.7; }
+main .run-notes p + p { margin-top: 18px; }
+main .run-notes__label { color: var(--bone); font: 12px/1.5 var(--mono); }
+main .modes { grid-column: 1/-1; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 32px; margin-top: 36px; }
+main .modes h3 { color: var(--bone); font-size: 17px; font-weight: 550; margin-bottom: 12px; }
+main .modes p { color: var(--ash); font-size: 14px; line-height: 1.7; }
+main .modes code { overflow-wrap: anywhere; }
+main .bonus-commands { grid-column: 1/-1; margin-top: 32px; border-block: 1px solid var(--line); padding: 8px 0; }
+main .bonus-commands summary { cursor: pointer; padding: 14px 0; color: #dacde3; min-height: 44px; font-size: 15px; }
+main .bonus-commands .term { margin: 8px 0 16px; }
+main .try__availability,main .try__provenance { grid-column: 1/-1; max-width: 90ch; color: var(--ash); font-size: 13px; line-height: 1.7; margin-top: 26px; }
+main .try__provenance { margin-top: 14px; }
+main .copy { min-height: 44px; height: auto; border-radius: 3px; }
+@media (max-width: 760px) {
+  main .bonus,main .modes { grid-template-columns: 1fr; }
+  main .bonus { margin-top: 32px; }
+  main .bonus__head { display: block; }
+  main .bonus__head p { margin-top: 8px; }
+  main .modes { gap: 26px; }
+  main .app__run { width: 100%; justify-content: space-between; }
+  main .apps--primary .app + .app { margin-top: 8px; }
+}
+
+/* Keep section headings clear of the fixed bar after native anchor navigation. */
+main section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
+
+/* Local artifact handoff, alongside the original workshop illustration. */
+main .bridge { align-items: center; row-gap: 32px; }
+.bridge__art { grid-column: 1 / 8; }
+.bridge__art img { display: block; width: 100%; height: auto; }
+.bridge__copy { grid-column: 9 / 13; }
+.bridge__copy h2 { font-size: clamp(36px, 3.2vw, 56px); margin-bottom: 24px; }
+.bridge__copy p { color: var(--ash); font-size: 16px; line-height: 1.65; }
+.bridge__docs { font-size: 14px !important; }
+.app__run { border: 0; text-decoration: none; background: none; }
+@media (max-width: 900px) {
+  .bridge__art, .bridge__copy { grid-column: 1 / -1; }
+  .bridge__copy { max-width: 58ch; }
+}

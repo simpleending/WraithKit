@@ -1,0 +1,138 @@
+{
+  "created_on": "2026-11-15",
+  "scope": "Research/specifications only; not runnable demos",
+  "files": [
+    {
+      "path": "AUDIT.json",
+      "bytes": 768,
+      "sha256": "b05b3aab07e6352cc9a992c3443326fd23d51d9b25681c2fd5f028ff6ff0bcb4"
+    },
+    {
+      "path": "demos/repo-wraith/example.synthetic.json",
+      "bytes": 340,
+      "sha256": "7d89453181e9f159ec4f5897a6bf6044293eab1638e8864e08d9d367dd6ce0f7"
+    },
+    {
+      "path": "demos/repo-wraith/output.schema.json",
+      "bytes": 2412,
+      "sha256": "5982ef662e0f90197359af07d2a58dcb49177c544e695b37225eb68cc3b6e97d"
+    },
+    {
+      "path": "demos/repo-wraith/SPEC.md",
+      "bytes": 2332,
+      "sha256": "44034cd8809c6dd167992a603e101fe1275c2daf229d4a2c19bc3c7d4d0c17f9"
+    },
+    {
+      "path": "demos/research-wraith/example.synthetic.json",
+      "bytes": 430,
+      "sha256": "922bde1aaddf002a122ca5ff8dfcbb0fd9d341ac2a4dce56dd997ab3c2131d46"
+    },
+    {
+      "path": "demos/research-wraith/output.schema.json",
+      "bytes": 1974,
+      "sha256": "b34184b251c9cdfeed2a66be5b1ffec396cbd80fd018db31edf48a6befae4fc8"
+    },
+    {
+      "path": "demos/research-wraith/SPEC.md",
+      "bytes": 2107,
+      "sha256": "6f4309bfd70b0fe808ba71ff29cfe66aef90de6eb8dddcc7192d2ce45e53526e"
+    },
+    {
+      "path": "evidence/1sec-docs__security-updates__2026-10-27-response-safety.md.txt",
+      "bytes": 6956,
+      "sha256": "0732ff2e9f19736dd5053268c77da1482ef97d693f7e889741dfd6f29208e5d0"
+    },
+    {
+      "path": "evidence/1sec-internal__api__server.go.txt",
+      "bytes": 38707,
+      "sha256": "8082eb2271e00375a428cc0dd75c369fdd99e9d2a58c13c3736c904989af5099"
+    },
+    {
+      "path": "evidence/1sec-internal__core__response.go.txt",
+      "bytes": 25251,
+      "sha256": "042747937c298385312d5e25a7c4b8a34eb35471bdb849bd2a1af838f0a7ca9f"
+    },
+    {
+      "path": "evidence/1sec-LICENSE.txt",
+      "bytes": 32516,
+      "sha256": "cfc08eec00391ccc59147e55f1289df6ee729bc079303c5de40caebe9bc31780"
+    },
+    {
+      "path": "evidence/1sec-README.md.txt",
+      "bytes": 30276,
+      "sha256": "a52a61b3ecab9e1b51b8d6059b84d4980bbe73a29a4170ff0bf9cc34c6c74c55"
+    },
+    {
+      "path": "evidence/1sec-repository.json",
+      "bytes": 429,
+      "sha256": "75c6911b2b1ab300f40e55959f26d802052d343611da8b5ed43941a71fbbfe88"
+    },
+    {
+      "path": "evidence/1sec-sources.json",
+      "bytes": 1740,
+      "sha256": "d8cf8fb600eda13269f2e9cff3017ba07e04351236e33f44e907393f611ad590"
+    },
+    {
+      "path": "evidence/1sec-tree-paths.json",
+      "bytes": 13453,
+      "sha256": "4e422c0afcf74d6c22c1487b3cc103d7d42153644a5ced680c8dc0741b211b61"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 1956,
+      "sha256": "5fa798d25e20b985d85a458af6d161ad11190750a35c0aeed91c80cb873c9052"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1945,
+      "sha256": "ee3c48bd4d7dca6b8889acd3accd5487b8c18c6ed1ae8e35a9078bcb39024d0d"
+    },
+    {
+      "path": "research/FOUNDATIONS.md",
+      "bytes": 4551,
+      "sha256": "8d54dcc8b6c0e7135b3b4153743fcf6c0e711a2eebbf3a80e546cde2f8e5830c"
+    },
+    {
+      "path": "research/KIROWEEN_2026.md",
+      "bytes": 3587,
+      "sha256": "aa3b3d7da38427a869320fb085b1aba28111799a70b9ed749553ce246ff3fd46"
+    },
+    {
+      "path": "research/ONE_SEC.md",
+      "bytes": 3711,
+      "sha256": "e89a177a268add1dac0e0b33b67984b60ae65b9a0a099f9c790bfe623c280e20"
+    },
+    {
+      "path": "research/SOURCES.json",
+      "bytes": 3385,
+      "sha256": "a83f606661e47e05fe8d7e0acc37db72969913081574ad143b24d6640f7e151e"
+    },
+    {
+      "path": "specs/ARCHITECTURE.md",
+      "bytes": 7925,
+      "sha256": "634fff3854040279a9da63d7d53697a7d1531db0a716c182ced0a2ab328cc43d"
+    },
+    {
+      "path": "specs/REQUIREMENTS.md",
+      "bytes": 2927,
+      "sha256": "3620dbdf631806be22c78bc7a833c7f81725562d5399e286fcf0ec0909ab9036"
+    },
+    {
+      "path": "specs/ROADMAP_20.md",
+      "bytes": 2917,
+      "sha256": "28a149871bd59ef80736fc38d93974be5e6acaa427a60978666c23db9c06cb1c"
+    },
+    {
+      "path": "specs/SCHEMA_NOTES.md",
+      "bytes": 1082,
+      "sha256": "61d0beff3087b0d5d883f72289d1ead61bb32999006934654f95fd2278816edc"
+    },
+    {
+      "path": "specs/TASKS.md",
+      "bytes": 1969,
+      "sha256": "bcfb3dabe4ac34c8936986575376cedbe1df10007140e55c73e90613cc78c758"
+    }
+  ],
+  "file_count": 26,
+  "total_bytes": 195646
+}

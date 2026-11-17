@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WraithKit · a Rust kernel for AI agents that ask before they act</title>
+<meta name="description" content="A Rust toolkit for agents that show their evidence and ask before changing files. Try four local apps with scripted demos and a verifiable record of each run.">
+<link rel="canonical" href="https://wraithkit.example/">
+<meta name="theme-color" content="#0c0b0f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WraithKit · agents that ask before they act">
+<meta property="og:description" content="Review the evidence and approve the exact change. Check the recorded run afterward. A Kiroween 2026 Skeleton Crew entry.">
+<meta property="og:url" content="https://wraithkit.example/">
+<meta property="og:image" content="https://wraithkit.example/assets/wraith-paper.webp">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="1024">
+<meta property="og:image:alt" content="Stitched-paper WraithKit lettering in a moonlit coding workshop.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WraithKit · agents that ask before they act">
+<meta name="twitter:description" content="Review the evidence and approve the exact change. Check the recorded run afterward.">
+<meta name="twitter:image" content="https://wraithkit.example/assets/wraith-paper.webp">
+<meta name="twitter:image:alt" content="Stitched-paper WraithKit lettering in a moonlit coding workshop.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/host-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/fragment-mono-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/refinement.css">
+<link rel="preload" as="image" href="assets/wraith-paper.webp">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"WraithKit","description":"A small Rust kernel for AI agent apps that ask before they act.","programmingLanguage":"Rust","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/simpleending/WraithKit"}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" integrity="sha384-3vCAhD+a3BOliP3QqjQINn6ZWiZxoqu0WFxX5ZQZgqekDZuSb1mJBrrLMmu94H8f" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js" integrity="sha384-H2WL1iy/jKQQ7MTHU2hskZKNHTYWWD/KgKE1vCNnaWY8An2ESTh23KN/fTp8XS3j" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/SplitText.min.js" integrity="sha384-e98MX/fxZrUXA/6T+aCptryLfHgR2FpEmWxDbbPloHT0Qg79dEXKdLJ/iwD2lzxs" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous" defer></script>
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar" data-bar>
+  <a class="bar__mark" href="#top" aria-label="WraithKit, back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 22V10a8 8 0 0 1 16 0v12l-2.7-2-2.6 2-2.7-2-2.7 2-2.6-2z"/><circle cx="9.5" cy="10.5" r="1.5"/><circle cx="14.5" cy="10.5" r="1.5"/></svg>
+    <span>WraithKit</span>
+  </a>
+  <nav class="bar__nav" aria-label="Sections">
+    <a class="drip-link" href="#rule">Rule</a>
+    <a class="drip-link" href="#ledger">Ledger</a>
+    <a class="drip-link" href="#try">Run it</a>
+  </nav>
+  <a class="bar__event" href="#kiroween"><span class="dot" aria-hidden="true"></span>Kiroween 2026 · Skeleton Crew</a>
+  <a class="bar__gh" href="https://github.com/simpleending/WraithKit" aria-label="GitHub: WraithKit source repository"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" data-hero>
+    <div class="hero__light" aria-hidden="true"></div>
+    <h1 class="hero__title">
+      <span class="sr-only">WraithKit</span>
+      <img class="hero__art" src="assets/wraith-paper.webp" width="1536" height="1024" alt="" fetchpriority="high">
+    </h1>
+
+    <div class="hero__foot">
+      <p class="hero__lede" data-intro-lede>Build agents.<br>Keep control.</p>
+      <p class="hero__description">Let an agent investigate an incident or check a release. Review the evidence, then decide what it can change.</p>
+      <div class="hero__actions"><a class="hero__primary" href="#try">Run the offline demos</a><a class="hero__secondary" href="#crew">Meet the crew</a></div>
+    </div>
+  </section>
+
+
+  <section class="crew" id="crew" aria-labelledby="crew-h">
+    <h2 id="crew-h" data-split>Two lead Wraiths.<br>One shared skeleton.</h2>
+    <p class="crew__lede" data-reveal>Two apps to start with, built on the same Rust kernel. Each has its own tools and demo.</p>
+
+    <figure class="crew__art"><img src="assets/wraith-workshop.webp" width="1536" height="1024" loading="lazy" alt="Two handmade Wraiths studying code and evidence together at a moonlit workbench."></figure>
+    <div class="apps apps--primary">
+      <article class="app" aria-label="Security Wraith" id="security-wraith" data-reveal>
+        <p class="app__index">Security Wraith</p>
+        <h3>Investigate first.<br>Act with permission.</h3>
+        <p class="app__job">Review an incident and its response plan.</p>
+        <p>Import redacted 1-SEC events and alerts, inspect the evidence, then approve a local response plan. The demo also lets you approve a simulated pause and its reversal separately.</p>
+        <p class="app__boundary">The importer does not connect to 1-SEC or redact secrets for you. Plans made from imported evidence are saved locally, never carried out on a real system.</p>
+        <a class="app__run" href="#try">Run Security Wraith</a>
+      </article>
+      <article class="app" aria-label="Release Wraith" id="release-wraith" data-reveal>
+        <p class="app__index">Release Wraith</p>
+        <h3>Find the mismatch.<br>Review the repair.</h3>
+        <p class="app__job">Check a release plan against the artifact that actually exists.</p>
+        <p>Find a wrong artifact path in a release plan. Check the local file’s hash and approve the exact correction.</p>
+        <p class="app__boundary">Checks local files only. It does not rerun CI, build or publish a release.</p>
+        <a class="app__run" href="#try">Run Release Wraith</a>
+      </article>
+    </div>
+    <div class="bonus" aria-labelledby="bonus-h">
+      <div class="bonus__head"><h3 id="bonus-h">Also in the box</h3></div>
+      <article class="bonus__app"><h4>Repo Wraith</h4><p>Review a code fix while refusing a poisoned instruction.</p></article>
+      <article class="bonus__app"><h4>Research Wraith</h4><p>Compare sources and approve a cited brief.</p></article>
+    </div>
+  </section>
+
+  <section class="bridge" id="bridge" aria-labelledby="bridge-h">
+    <figure class="bridge__art"><img src="assets/wraith-bridge.webp" width="1774" height="887" loading="lazy" alt="Two stitched-paper ghosts pass a report across a small wooden bridge; the receiver examines it with a magnifying glass."></figure>
+    <div class="bridge__copy"><h2 id="bridge-h">Hand off the work.<br>Keep the review.</h2>
+      <p>Turn Release Wraith’s findings into a brief with Research Wraith. Export the report, open it in Research, and review what it prepares.</p>
+      <p>Research treats the report as untrusted evidence and asks for a fresh approval before saving the brief. The walkthrough runs entirely on your computer.</p>
+      <p class="bridge__docs">The offline walkthrough and adapter contract are in <code>BRIDGE.md</code>.</p>
+    </div>
+  </section>
+
+  <section class="rule" id="rule" aria-labelledby="rule-h">
+    <h2 class="rule__text" id="rule-h" data-scrub-words>The model proposes.<br>You decide.<br><em>The kernel enforces it.</em></h2>
+    <p class="rule__note" data-reveal>Check the preview, then approve the change you want. WraithKit asks again if the action or its inputs change. Instructions in a file, log or web page never count as your permission.</p>
+  </section>
+
+  <section class="ledger" id="ledger" aria-labelledby="ledger-h">
+    <div class="ledger__head">
+      <h2 id="ledger-h" data-split>A paper trail.<br>Without the guesswork.</h2>
+      <p data-reveal>Try rewriting a denied action in this Repo Wraith demo. The hash chain catches edits; even a fully rewritten chain differs from the head hash you kept. All checks here run in your browser.</p>
+    </div>
+    <div class="ledger__body">
+      <div class="ledger__panel" data-ledger-panel>
+        <div class="steps" role="group" aria-label="Tamper with the ledger">
+          <button class="step" type="button" data-tamper="1" disabled><span class="step__n">1</span>Flip the denial of P2 into an approval</button>
+          <button class="step" type="button" data-tamper="2" disabled><span class="step__n">2</span>Re-hash that line to cover it up</button>
+          <button class="step" type="button" data-tamper="3" disabled><span class="step__n">3</span>Re-hash every line after it</button>
+          <button class="step step--reset" type="button" data-tamper="0" disabled>Restore the real ledger</button>
+        </div>
+        <div class="report" aria-live="polite">
+          <p class="report__state" data-report-state>Not checked yet</p>
+          <p class="report__text" data-report-text>Enable JavaScript to check this demo ledger and try the edits. The Rust verifier also works offline.</p>
+          <p class="report__head"><span>head</span> <code data-report-head>…</code></p>
+          <p class="report__known"><span>known head</span> <code data-known-head>…</code></p>
+        </div>
+        <label class="own">
+          <input type="file" accept=".jsonl,application/x-ndjson,text/plain" data-own disabled>
+          <span>Check your own <code>ledger.jsonl</code></span>
+        </label>
+        <p class="own__note">The file stays in your browser. Maximum file size: 2 MiB. This checks the chain only. <code>verify</code> also checks blobs, quotes, digests, authorization, run-once and secrets.</p>
+      </div>
+      <ol class="chain" data-chain aria-label="Ledger lines"></ol>
+    </div>
+  </section>
+
+
+
+  <section class="try" id="try" aria-labelledby="try-h">
+    <h2 id="try-h" data-split>Bring your first<br>Wraith to life.</h2>
+    <p class="try__lede" data-reveal>From your local checkout, use Rust 1.96 or newer. Build once, then run either scripted demo with no model key. The first build may download dependencies.</p>
+    <div class="terminal-heading"><span aria-hidden="true">&gt;_</span><span>From the WraithKit checkout</span><span>Scripted / local</span></div>
+    <ol class="term" data-reveal aria-label="Build and run the primary demos">
+      <li><code>cargo build --workspace --locked</code><button class="copy" type="button" data-copy aria-label="Copy build command">Copy</button></li>
+      <li><code>cargo run --locked --offline -p security-wraith -- demo</code><button class="copy" type="button" data-copy aria-label="Copy Security demo command">Copy</button></li>
+      <li><code>cargo run --locked --offline -p release-wraith -- demo</code><button class="copy" type="button" data-copy aria-label="Copy Release demo command">Copy</button></li>
+    </ol>
+    <div class="term__out run-notes" data-reveal>
+      <p class="run-notes__label">What happens next</p>
+      <p>Open the local URL printed in your terminal. You can read the evidence and proposed file change, then approve or deny it.</p>
+      <p>Security asks separately before reversing its simulated pause. Release checks the plan again after your decision. Choose <strong>Verify ledger</strong> to check the recorded run.</p>
+      <p>These demos use scripted replies and sample data. Approvals and file changes run for real. For your own data, input formats and optional model setup are in each app’s README. Live mode sends task and tool data to your configured provider.</p>
+    </div>
+    <details class="bonus-commands"><summary>Run the bonus examples</summary><ol class="term" aria-label="Bonus demo commands">
+      <li><code>cargo run --locked --offline -p repo-wraith -- demo</code><button class="copy" type="button" data-copy aria-label="Copy Repo demo command">Copy</button></li>
+      <li><code>cargo run --locked --offline -p research-wraith -- demo</code><button class="copy" type="button" data-copy aria-label="Copy Research demo command">Copy</button></li>
+    </ol></details>
+    <p class="try__availability">Local preview. The source repository is linked above. Read <code>README.md</code> for setup and limits, and <code>BUILD_LOG.md</code> for the Kiro and later ChatGPT-assisted work. This toolkit runs trusted local apps, not a sandbox.</p>
+  </section>
+
+</main>
+
+<footer class="foot" id="kiroween">
+  <div class="foot__ghost" data-lottie aria-hidden="true"></div>
+  <p class="foot__event">Kiroween 2026</p>
+  <ul class="foot__links">
+    <li><a class="drip-link" href="https://github.com/simpleending/WraithKit">Repository</a></li>
+    <li><a class="drip-link" href="https://github.com/simpleending/WraithKit/blob/main/BUILD_LOG.md">Build log</a></li>
+    <li><a class="drip-link" href="https://github.com/simpleending/WraithKit/blob/main/LICENSE">MIT license</a></li>
+  </ul>
+</footer>
+</body>
+</html>

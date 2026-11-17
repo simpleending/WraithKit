@@ -1,0 +1,7 @@
+{
+  "schema": "wraith-release-plan-v1",
+  "fixture": true,
+  "package": "spectral-cli",
+  "version": "1.4.2",
+  "artifact": "dist/spectral-cli.zip"
+}

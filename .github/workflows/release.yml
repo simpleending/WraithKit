@@ -1,0 +1,45 @@
+name: release
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - { os: windows-latest, target: x86_64-pc-windows-msvc, ext: .exe }
+          - { os: ubuntu-latest, target: x86_64-unknown-linux-gnu, ext: "" }
+          - { os: macos-latest, target: aarch64-apple-darwin, ext: "" }
+          - { os: macos-latest, target: x86_64-apple-darwin, ext: "" }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify bundled third-party notices
+        run: python .github/scripts/third_party_notices.py --verify
+      - run: rustup toolchain install 1.96 --profile minimal && rustup default 1.96 && rustup target add ${{ matrix.target }}
+      - name: Build release binaries
+        env:
+          RUSTFLAGS: ${{ runner.os == 'Windows' && '-C target-feature=+crt-static' || '' }}
+        run: cargo build --locked --release --target ${{ matrix.target }} -p security-wraith -p release-wraith -p repo-wraith -p research-wraith
+      - name: Zip each app binary
+        shell: bash
+        run: |
+          for app in security-wraith release-wraith repo-wraith research-wraith; do
+            cp "target/${{ matrix.target }}/release/${app}${{ matrix.ext }}" "${app}${{ matrix.ext }}"
+            if [ "$RUNNER_OS" = "Windows" ]; then
+              7z a "${app}-${{ matrix.target }}.zip" "${app}${{ matrix.ext }}" LICENSE README.md BRIDGE.md apps/research-wraith/BRIDGE.md THIRD_PARTY_NOTICES.md RUST_STANDARD_LIBRARY_NOTICES.html apps/security-wraith/README.md apps/release-wraith/README.md apps/security-wraith/fixtures/1sec-export/README.md apps/security-wraith/fixtures/1sec-export/events.json apps/security-wraith/fixtures/1sec-export/alerts.json apps/security-wraith/fixtures/1sec-export/mapping.json apps/security-wraith/tools/1sec-export-probe.go
+            else
+              zip "${app}-${{ matrix.target }}.zip" "${app}${{ matrix.ext }}" LICENSE README.md BRIDGE.md apps/research-wraith/BRIDGE.md THIRD_PARTY_NOTICES.md RUST_STANDARD_LIBRARY_NOTICES.html apps/security-wraith/README.md apps/release-wraith/README.md apps/security-wraith/fixtures/1sec-export/README.md apps/security-wraith/fixtures/1sec-export/events.json apps/security-wraith/fixtures/1sec-export/alerts.json apps/security-wraith/fixtures/1sec-export/mapping.json apps/security-wraith/tools/1sec-export-probe.go
+            fi
+          done
+      - name: Upload to the GitHub Release (created first)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --generate-notes || true
+          gh release upload "$GITHUB_REF_NAME" *.zip --clobber
