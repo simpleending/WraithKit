@@ -1,6 +1,6 @@
 # WraithKit submission packet
 
-Draft for owner review, 2026-11-17. This is not a completed hackathon submission. The selected source destination is [simpleending/WraithKit](https://github.com/simpleending/WraithKit); verify public access and insert the missing release, demo and video links before submitting.
+Draft for owner review, 2026-11-17. This is not a completed hackathon submission. The public source is [simpleending/WraithKit](https://github.com/simpleending/WraithKit). The [landing page](https://wraithkit.vercel.app/) is a project introduction and browser-ledger demo, not a hosted Rust application. Insert the missing release, working-app demonstration and video links before submitting.
 
 ## Submission gates
 
@@ -16,7 +16,7 @@ Current decisions still needed:
 
 - [x] Owner selected MIT for the hackathon on 2026-11-17; existing `LICENSE` and Cargo metadata verified.
 - [ ] Owner confirms eligibility and project dates.
-- [ ] Public GitHub URL and source/release commit are selected and checked.
+- [x] Public GitHub source is available at `simpleending/WraithKit`; initial snapshot `b84e3d6` passed the public three-OS and synthetic handoff CI runs linked in README. Downloadable releases remain pending.
 - [ ] Current CI and downloadable builds match that commit. Test downloaded builds, not just the developer checkout.
 - [ ] Working-app/test-build URL is inserted into the submission. Verify access while signed out.
 - [ ] Record, review and publish the video; insert its YouTube URL.

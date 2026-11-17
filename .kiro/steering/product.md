@@ -37,3 +37,7 @@ This dated addendum supersedes the two-app scope and Wraiths 3–20 exclusion ab
 - The owner selected **MIT** for WraithKit on 2026-11-17. Dependencies retain their own licenses; 1-SEC is separately licensed and is not bundled.
 
 Provenance: this scope maintenance and the new Security/Release extensions were ChatGPT/Cortana-assisted. This addendum is not evidence of a Kiro session. Preserve the original Kiro development record; record any future genuine Kiro review or implementation separately. Do not manufacture, backdate or infer Kiro usage.
+
+## Handoff and public-site addendum - 2026-11-17
+
+Security now has a tested `import-1sec` adapter for operator-redacted local event/alert exports plus explicit mapping. This is file-format compatibility, not a live connector or detector evaluation. WraithBridge now transfers a bounded, typed local Release report to Research as untrusted evidence; it never transfers approval. See `.kiro/README.md` and `BRIDGE.md` for the current implementation map and limits. The static landing is separate from the local Rust apps. These additions and this documentation are ChatGPT/Cortana-assisted, not a claim of new Kiro activity.

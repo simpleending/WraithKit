@@ -74,13 +74,15 @@ Three mechanisms enforce it. Each idea exists elsewhere (see [Prior work](#prior
 
 ### Current WraithBridge validation
 
+The public source snapshot [`b84e3d6`](https://github.com/simpleending/WraithKit/commit/b84e3d6fc8f80618054f56e287072df0f42f2301) passed [the full Windows, Ubuntu and Intel macOS CI matrix](https://github.com/simpleending/WraithKit/actions/runs/44132241041) and [the Windows/Linux synthetic 1-SEC handoff checks](https://github.com/simpleending/WraithKit/actions/runs/44132241099). These runs include all four apps and WraithBridge. They do not establish Apple Silicon runtime coverage or a live 1-SEC deployment. Later documentation or site commits should be checked against their own Actions results.
+
 The current CI matrix uses Windows, Ubuntu and **macOS 26 on Intel**. GitHub cancelled two Apple Silicon runner requests before any tests started because of capacity limits. Intel macOS coverage does not establish Apple Silicon runtime coverage; check Actions for the selected commit’s actual result. Every test and smoke check remains enabled.
 
 The optional [Release-to-Research handoff](BRIDGE.md) has passed **211 Windows tests** (three existing live-network tests ignored), workspace formatting, clippy with warnings denied, and the build. The actual two-binary loopback smoke separately exercised approval, denial, changed-input refusal, resume and repeated-decision refusal, with both apps' ledgers verified. All eight original four-app smoke flows and the synthetic 1-SEC import/check also passed. An independent review checked the full evidence/preview boundary and interrupted-read resume; a discovered resume provenance gap was fixed and covered by regression tests.
 
 These are deterministic offline checks, not an evaluation of model reasoning, CI-provider authenticity or live containment. Windows symbolic-link tests that lack OS privilege remain explicitly skipped; separate Windows junction checks passed. A network-disabled Linux container passed **220 tests** (three live-network tests ignored), including actual Unix symlink and FIFO branches. The shortened landing passed eight responsive/interactivity cases from 320 to 1920 pixels. Hosted CI status must be checked against the selected commit; the older results below do not cover WraithBridge.
 
-The reviewed four-app source at commit `99a0c46675e92a954a5df9b5081fb88199ba42f5` passed hosted CI on **Windows, Ubuntu and macOS** in the private rehearsal repository (run `44080690459`). Each job ran formatting, clippy, workspace tests/build, all eight offline CLI/HTTP smoke flows, landing/shared-UI checks, notice verification and the Kiro inclusion check. These are checks of WraithKit itself, not CI execution by Release Wraith. The documentation-only follow-up `2f5cae8` also passed all three hosted jobs. The newer local handoff addition is recorded separately below.
+The reviewed four-app source at commit `99a0c46675e92a954a5df9b5081fb88199ba42f5` passed hosted CI on **Windows, Ubuntu and macOS** in the private rehearsal repository (run `44080690459`). Each job ran formatting, clippy, workspace tests/build, all eight offline CLI/HTTP smoke flows, landing/shared-UI checks, notice verification and the Kiro inclusion check. These are checks of WraithKit itself, not CI execution by Release Wraith. The documentation-only follow-up `2f5cae8` also passed all three hosted jobs. That earlier run predates WraithBridge; the current handoff validation is recorded above.
 
 The final local suites passed **175 tests on Windows** and **181 in a network-disabled Linux container**, with three live-network tests ignored in each default run. Four optimized Windows application archives were extracted, their executable/document hashes checked, and all eight fixture smoke flows passed against those extracted binaries. These archives remain local validation artifacts, not public downloads.
 
@@ -116,14 +118,14 @@ The [official Kiroween 2026 rules](https://kiroween.devpost.com/rules) call for 
 
 This is a local developer toolkit, not a hosted multi-agent service. Persistent state means resumable run history and evidence, not a cross-session semantic memory store. MCP, shell execution, multi-user hosting and further roadmap apps are outside this submission's implemented scope.
 
-See [SUBMISSION.md](SUBMISSION.md) for the owner-review submission draft, judge walkthrough, Kiro-use narrative and a 2:45 demo shot plan. The owner selected [simpleending/WraithKit](https://github.com/simpleending/WraithKit) for public source. Downloadable releases, a deployed demo and the video remain separate publication steps.
+See [SUBMISSION.md](SUBMISSION.md) for the owner-review submission draft, judge walkthrough, Kiro-use narrative and a 2:45 demo shot plan. The public source is [simpleending/WraithKit](https://github.com/simpleending/WraithKit). The [landing page](https://wraithkit.vercel.app/) explains the apps and includes an in-browser ledger demonstration; it does not host the Rust apps. Downloadable releases and the end-to-end video remain separate publication steps.
 
 Before submission:
 
 - [x] Two distinct application folders and a shared foundation are present.
 - [x] Root `.kiro/` specs, steering and hooks are present and not ignored.
 - [x] MIT license selected by the owner on 2026-11-17; the existing `LICENSE` and Cargo metadata match.
-- [x] Owner selected `simpleending/WraithKit` as the public source destination. Verify its public access and selected commit at publication.
+- [x] Public source is available at `simpleending/WraithKit`; the initial public snapshot and its CI results are linked above.
 - [ ] Provide judge-accessible working builds and installation instructions; a landing page alone is not the application demo.
 - [ ] Publish a working end-to-end YouTube demonstration under three minutes and include it in the submission.
 - [ ] Complete the Kiro-use write-up with genuine development evidence. The build log records Kiro sessions; the presence of `.kiro/` files alone does not establish tool usage.
